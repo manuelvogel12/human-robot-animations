@@ -26,7 +26,7 @@ def create_bvh_hierarchy_str(t_pose_dirs, inter_joints_dists):
 
     def estimate_positions_with_new_dists(parent_label, parent_pos):
         positions = {}
-        base_bone_label = CONFIG_YAML.ROOT_BONE
+        base_bone_label = CONFIG_YAML.ROOT_JOINT
         if parent_label == base_bone_label:
             positions[base_bone_label] = np.array([0.0, 0.0, 0.0])
             parent_pos = np.array([0.0, 0.0, 0.0])

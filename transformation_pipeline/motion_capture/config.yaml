@@ -1,18 +1,34 @@
 
 JOINTS_HIERARCHY:
-  'ROOT': ["hip"]
-  'hip': ["collar"]
-  'collar': [ "head", "left_shoulder", "right_shoulder" ]
-  'head': []
-  'left_shoulder': [ "left_elbow" ]
-  'left_elbow': [ "left_hand" ]
-  'right_shoulder': [ "right_elbow" ]
-  'right_elbow': [ "right_hand" ]
-  'right_hand': []
-  'left_hand': []
+  'ROOT': ["root_RX"]
+  'root_RX': ["lower back_RX", "L femur_RX", "R femur_RX"]
+  'lower back_RX': ["head_RX"]
+  'head_RX': ["head end_RX", "L collar_RX", "R collar_RX"]
+  'head end_RX': []
 
+  'L collar_RX': ["L humerus_RX"]
+  'L humerus_RX': ["L elbow_RX"]
+  'L elbow_RX': ["L wrist_RX"]
+  'L wrist_RX': ["L wrist end_RX"]
+  'L wrist end_RX': []
 
-ROOT_JOINT: 'hip'
+  'L femur_RX': ["L tibia_RX"]
+  'L tibia_RX': ["L foot_RX"]
+  'L foot_RX': ["L toe_RX"]
+  'L toe_RX': []
+
+  'R collar_RX': [ "R humerus_RX" ]
+  'R humerus_RX': [ "R elbow_RX" ]
+  'R elbow_RX': [ "R wrist_RX" ]
+  'R wrist_RX': [ "R wrist end_RX" ]
+  'R wrist end_RX': [ ]
+
+  'R femur_RX': [ "R tibia_RX" ]
+  'R tibia_RX': [ "R foot_RX" ]
+  'R foot_RX': [ "R toe_RX" ]
+  'R toe_RX': [ ]
+
+ROOT_JOINT: 'root_RX'
 
 BONE_HIERARCHY:
   'hip': ['torso']
@@ -36,37 +52,37 @@ BONE_END_BVH_NAME:
 ROOT_BONE: 'hip'
 
 BONE_BEGIN_AT_JOINT:
-  'hip': 'hip'
-  'torso': 'hip'
-  'neck': 'collar'
-  'neck_end': 'head'
-  'left_collar': 'collar'
-  'left_upper_arm': 'left_shoulder'
-  'left_forearm': 'left_elbow'
-  'left_forearm_end': 'left_hand'
-  'right_collar': 'collar'
-  'right_upper_arm': 'right_shoulder'
-  'right_forearm':  'right_elbow'
-  'right_forearm_end': 'right_hand'
+  'hip': 'root_RX'
+  'torso': 'lower back_RX'
+  'neck': 'L collar_RX'
+  'neck_end': 'head_RX'
+  'left_collar': 'L collar_RX'
+  'left_upper_arm': 'L humerus_RX'
+  'left_forearm': 'L elbow_RX'
+  'left_forearm_end': 'L wrist_RX'
+  'right_collar': 'R collar_RX'
+  'right_upper_arm': 'R humerus_RX'
+  'right_forearm':  'R elbow_RX'
+  'right_forearm_end': 'R wrist_RX'
 
 BONE_END_AT_JOINT:
-  'hip': 'hip'
-  'torso': 'collar'
-  'neck': 'head'
+  'hip': 'root_RX'
+  'torso': 'L collar_RX'
+  'neck': 'head_RX'
   'neck_end': ''
-  'left_collar': 'left_shoulder'
-  'left_upper_arm': 'left_elbow'
-  'left_forearm': 'left_hand'
-  'left_forearm_end': ''
-  'right_collar': 'right_shoulder'
-  'right_upper_arm': 'right_elbow'
-  'right_forearm': 'right_hand'
-  'right_forearm_end': ''
+  'left_collar': 'L humerus_RX'
+  'left_upper_arm': 'L elbow_RX'
+  'left_forearm': 'L wrist_RX'
+  'left_forearm_end': 'L wrist_end_RX'
+  'right_collar': 'R humerus_RX'
+  'right_upper_arm': 'R elbow_RX'
+  'right_forearm': 'R wrist_RX'
+  'right_forearm_end': 'R wrist_end_RX'
 
 
 FPS: 100
 
-joint_name_pattern_csv: 'Global Angle (\w+)'
+joint_name_pattern_csv: '(\w+)_RX'
 
 # postprocessing config, see defautl config in transformation pipeline.py to check which values must be provided
 postprocessing : 
