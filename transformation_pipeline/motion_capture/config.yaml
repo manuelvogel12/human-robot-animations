@@ -2,8 +2,8 @@
 JOINTS_HIERARCHY:
   'ROOT': ["root_RX"]
   'root_RX': ["lower back_RX", "L femur_RX", "R femur_RX"]
-  'lower back_RX': ["head_RX"]
-  'head_RX': ["head end_RX", "L collar_RX", "R collar_RX"]
+  'lower back_RX': ["head_RX", "L collar_RX", "R collar_RX"]
+  'head_RX': ["head end_RX"]
   'head end_RX': []
 
   'L collar_RX': ["L humerus_RX"]
