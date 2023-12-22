@@ -1,34 +1,19 @@
 
 JOINTS_HIERARCHY:
-  'ROOT': ["root_RX"]
-  'root_RX': ["lower back_RX", "L femur_RX", "R femur_RX"]
-  'lower back_RX': ["head_RX", "L collar_RX", "R collar_RX"]
-  'head_RX': ["head end_RX"]
-  'head end_RX': []
+  'ROOT': ["lower back_RX"]
+  'lower back_RX': ["L collar_RX"]
+  'head_RX': []
 
-  'L collar_RX': ["L humerus_RX"]
+  'L collar_RX': ["head_RX", "L humerus_RX", "R humerus_RX" ]
   'L humerus_RX': ["L elbow_RX"]
   'L elbow_RX': ["L wrist_RX"]
-  'L wrist_RX': ["L wrist end_RX"]
-  'L wrist end_RX': []
+  'L wrist_RX': []
 
-  'L femur_RX': ["L tibia_RX"]
-  'L tibia_RX': ["L foot_RX"]
-  'L foot_RX': ["L toe_RX"]
-  'L toe_RX': []
-
-  'R collar_RX': [ "R humerus_RX" ]
   'R humerus_RX': [ "R elbow_RX" ]
   'R elbow_RX': [ "R wrist_RX" ]
-  'R wrist_RX': [ "R wrist end_RX" ]
-  'R wrist end_RX': [ ]
+  'R wrist_RX': []
 
-  'R femur_RX': [ "R tibia_RX" ]
-  'R tibia_RX': [ "R foot_RX" ]
-  'R foot_RX': [ "R toe_RX" ]
-  'R toe_RX': [ ]
-
-ROOT_JOINT: 'root_RX'
+ROOT_JOINT: 'lower back_RX'
 
 BONE_HIERARCHY:
   'hip': ['torso']
@@ -52,7 +37,7 @@ BONE_END_BVH_NAME:
 ROOT_BONE: 'hip'
 
 BONE_BEGIN_AT_JOINT:
-  'hip': 'root_RX'
+  'hip': 'lower back_RX'
   'torso': 'lower back_RX'
   'neck': 'L collar_RX'
   'neck_end': 'head_RX'
@@ -60,24 +45,24 @@ BONE_BEGIN_AT_JOINT:
   'left_upper_arm': 'L humerus_RX'
   'left_forearm': 'L elbow_RX'
   'left_forearm_end': 'L wrist_RX'
-  'right_collar': 'R collar_RX'
+  'right_collar': 'L collar_RX'
   'right_upper_arm': 'R humerus_RX'
   'right_forearm':  'R elbow_RX'
   'right_forearm_end': 'R wrist_RX'
 
 BONE_END_AT_JOINT:
-  'hip': 'root_RX'
+  'hip': 'lower back_RX'
   'torso': 'L collar_RX'
   'neck': 'head_RX'
   'neck_end': ''
   'left_collar': 'L humerus_RX'
   'left_upper_arm': 'L elbow_RX'
   'left_forearm': 'L wrist_RX'
-  'left_forearm_end': 'L wrist_end_RX'
+  'left_forearm_end': ''
   'right_collar': 'R humerus_RX'
   'right_upper_arm': 'R elbow_RX'
   'right_forearm': 'R wrist_RX'
-  'right_forearm_end': 'R wrist_end_RX'
+  'right_forearm_end': ''
 
 
 FPS: 100
