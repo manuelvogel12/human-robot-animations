@@ -26,6 +26,7 @@ class Configuration:
 
         self.BONE_BEGIN_AT_JOINT = config_parser['BONE_BEGIN_AT_JOINT']
         self.BONE_END_AT_JOINT = config_parser['BONE_END_AT_JOINT']
+        self.ROTATION_IN_DEGREE = config_parser['ROTATION_IN_DEGREE']
 
         try:
             self.postprocessing = config_parser['postprocessing']

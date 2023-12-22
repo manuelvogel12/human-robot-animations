@@ -120,6 +120,8 @@ def frames_joint_information(input_file, verbose=False):
 
                 # first convert to rot vec
                 global_angle = np.array([float(ang) for ang in values[:3]])
+                if CONFIG_YAML.ROTATION_IN_DEGREE:
+                    global_angle = np.deg2rad(global_angle)
                 rot_vec = Rotation.from_rotvec(global_angle)
                 # now apply rotation to rot vec and transform back into radians
                 global_angle = Rotation.as_rotvec(compose*rot_vec, degrees=False)

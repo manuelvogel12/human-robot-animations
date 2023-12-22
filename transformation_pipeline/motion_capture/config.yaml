@@ -64,6 +64,7 @@ BONE_END_AT_JOINT:
   'right_forearm': 'R wrist_RX'
   'right_forearm_end': ''
 
+ROTATION_IN_DEGREE: true
 
 FPS: 100
 
