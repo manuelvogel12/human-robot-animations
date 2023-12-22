@@ -208,6 +208,7 @@ def create_bvh_file(frames_info, t_pose_dirs, inter_joints_dists, base_t_pose_an
     frames_keys.sort(key=int)
 
     lines = estimate_motion_lines(frames_keys, frames_info, t_pose_dirs, base_t_pose_angle)
+    assert len(lines[0].split(" ")) == 39  # make sure not to write to many lines
     with open(filename, 'w', newline='') as file_handle:
         file_handle.write(hierarchy_str)
         file_handle.write('\n')

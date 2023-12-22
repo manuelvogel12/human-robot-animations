@@ -73,15 +73,18 @@ def frames_joint_information(input_file, verbose=False):
         # Then, there is a joint every 6 positions
         # give row with all joints
         tmp = next(viconreader)[2:]
-        joint_keys = []
+        joint_keys_and_indices = {}
+
+        # file may contain irrelevant rows
+        relevant_keys = []
+        for k1, k2 in zip(CONFIG_YAML.BONE_BEGIN_AT_JOINT, CONFIG_YAML.BONE_END_AT_JOINT):
+            relevant_keys.append(CONFIG_YAML.BONE_BEGIN_AT_JOINT[k1])
+            relevant_keys.append(CONFIG_YAML.BONE_END_AT_JOINT[k2])
+
         for i in range(int(len(tmp) / 6)):
             joint = tmp[i * 6]
-            # search for joints - here naming pattern is important
-            m = re.search(CONFIG_YAML.joint_name_pattern_csv, joint)
-            # l = m.group(1)
-            l = joint
-            joint_keys.append(l)
-
+            if joint in relevant_keys:
+                joint_keys_and_indices[joint] = i
         # Then we want to read the value for angles and positions.
         # use next to skip to row with data
         # next(viconreader)
@@ -98,7 +101,8 @@ def frames_joint_information(input_file, verbose=False):
             frame_raw = frame_raw[2:]
 
             valid_row = True
-            for joint_name, values in zip(joint_keys, list(even_chunks(frame_raw, 6))):
+            for joint_name, joint_index in joint_keys_and_indices.items():
+                values = frame_raw[joint_index * 6:joint_index * 6 + 6]
                 empty_b = [v == '' for v in values]
                 if any(empty_b):
                     valid_row = False
