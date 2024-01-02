@@ -65,8 +65,8 @@ def frames_joint_information(input_file, verbose=False):
 
     with open(input_file, newline='') as csvfile:
         viconreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-        # next(viconreader)
-        # next(viconreader)
+        next(viconreader)
+        next(viconreader)
 
         # First we want to check the order in which the joints appear
         # The first two columns of our CSV file are not important
@@ -83,12 +83,13 @@ def frames_joint_information(input_file, verbose=False):
 
         for i in range(int(len(tmp) / 6)):
             joint = tmp[i * 6]
+            joint = joint[10:]  # remove Subject01:
             if joint in relevant_keys:
                 joint_keys_and_indices[joint] = i
         # Then we want to read the value for angles and positions.
         # use next to skip to row with data
-        # next(viconreader)
-        # next(viconreader)
+        next(viconreader)
+        next(viconreader)
         frames_info = {}
         row_counter = 0.
         valid_row_counter = 0.
@@ -96,8 +97,7 @@ def frames_joint_information(input_file, verbose=False):
             row_counter += 1.
             if (frame_raw) == []:
                 continue
-            frame_number = int(float(frame_raw[0]))
-            frame_inf = Frame_information(str(frame_number), CONFIG_YAML.JOINTS_HIERARCHY)
+            frame_inf = Frame_information(frame_raw[0], CONFIG_YAML.JOINTS_HIERARCHY)
             frame_raw = frame_raw[2:]
 
             valid_row = True
@@ -157,7 +157,7 @@ def get_first_frame(frames_info):
     Returns:
         first_frame: the frame information of the first timestep
     """
-    frames_indices = [int(float(s)) for s in frames_info.keys()]
+    frames_indices = [int(s) for s in frames_info.keys()]
     frames_indices.sort()
     first_frame = frames_info[str(frames_indices[0])]
     return first_frame

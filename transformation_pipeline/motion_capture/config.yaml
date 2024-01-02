@@ -1,19 +1,20 @@
 
 JOINTS_HIERARCHY:
-  'ROOT': ["lower back_RX"]
-  'lower back_RX': ["L collar_RX"]
-  'head_RX': []
+  'ROOT': ["Root"]
+  'Root': ["L_Collar"]
+  # 'LowerBack': ["L_Collar"]
+  'Head': []
 
-  'L collar_RX': ["head_RX", "L humerus_RX", "R humerus_RX" ]
-  'L humerus_RX': ["L elbow_RX"]
-  'L elbow_RX': ["L wrist_RX"]
-  'L wrist_RX': []
+  'L_Collar': ["Head", "L_Humerus", "R_Humerus" ]
+  'L_Humerus': ["L_Elbow"]
+  'L_Elbow': ["L_Wrist"]
+  'L_Wrist': []
 
-  'R humerus_RX': [ "R elbow_RX" ]
-  'R elbow_RX': [ "R wrist_RX" ]
-  'R wrist_RX': []
+  'R_Humerus': [ "R_Elbow" ]
+  'R_Elbow': [ "R_Wrist" ]
+  'R_Wrist': []
 
-ROOT_JOINT: 'lower back_RX'
+ROOT_JOINT: 'Root'
 
 BONE_HIERARCHY:
   'hip': ['torso']
@@ -37,38 +38,38 @@ BONE_END_BVH_NAME:
 ROOT_BONE: 'hip'
 
 BONE_BEGIN_AT_JOINT:
-  'hip': 'lower back_RX'
-  'torso': 'lower back_RX'
-  'neck': 'L collar_RX'
-  'neck_end': 'head_RX'
-  'left_collar': 'L collar_RX'
-  'left_upper_arm': 'L humerus_RX'
-  'left_forearm': 'L elbow_RX'
-  'left_forearm_end': 'L wrist_RX'
-  'right_collar': 'L collar_RX'
-  'right_upper_arm': 'R humerus_RX'
-  'right_forearm':  'R elbow_RX'
-  'right_forearm_end': 'R wrist_RX'
+  'hip': 'Root'
+  'torso': 'Root'
+  'neck': 'L_Collar'
+  'neck_end': 'Head'
+  'left_collar': 'L_Collar'
+  'left_upper_arm': 'L_Humerus'
+  'left_forearm': 'L_Elbow'
+  'left_forearm_end': 'L_Wrist'
+  'right_collar': 'L_Collar'
+  'right_upper_arm': 'R_Humerus'
+  'right_forearm':  'R_Elbow'
+  'right_forearm_end': 'R_Wrist'
 
 BONE_END_AT_JOINT:
-  'hip': 'lower back_RX'
-  'torso': 'L collar_RX'
-  'neck': 'head_RX'
+  'hip': 'Root'
+  'torso': 'L_Collar'
+  'neck': 'Head'
   'neck_end': ''
-  'left_collar': 'L humerus_RX'
-  'left_upper_arm': 'L elbow_RX'
-  'left_forearm': 'L wrist_RX'
+  'left_collar': 'L_Humerus'
+  'left_upper_arm': 'L_Elbow'
+  'left_forearm': 'L_Wrist'
   'left_forearm_end': ''
-  'right_collar': 'R humerus_RX'
-  'right_upper_arm': 'R elbow_RX'
-  'right_forearm': 'R wrist_RX'
+  'right_collar': 'R_Humerus'
+  'right_upper_arm': 'R_Elbow'
+  'right_forearm': 'R_Wrist'
   'right_forearm_end': ''
 
 ROTATION_IN_DEGREE: true
 
 FPS: 100
 
-joint_name_pattern_csv: '(\w+)_RX'
+joint_name_pattern_csv: 'Subject(\w+)'
 
 # postprocessing config, see defautl config in transformation pipeline.py to check which values must be provided
 postprocessing : 
