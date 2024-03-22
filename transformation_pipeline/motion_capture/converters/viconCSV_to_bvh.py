@@ -173,6 +173,10 @@ def estimate_motion_lines(frames_keys, frames_info, t_pose_dirs, base_t_pose_ang
         angles_dict = rotation_dict_to_angle_dict(rot_dict)
         angles_dict['dummy'] = 0.
         bvh_row_angles = [angles_dict[key] for key in order_angle_keys]
+
+        # swap angles, because otherwise person bends instead of turning TODO: why needed? (different coordinate system?) and is there a better solution
+        bvh_row_angles[1], bvh_row_angles[2] = bvh_row_angles[2], bvh_row_angles[1]
+
         pos_dict = joint_position_dict_per_frame[i]
         bvh_row_pos = [pos_dict[CONFIG_YAML.ROOT_JOINT][i] for i in [0, 1, 2]]
         bvh_row = bvh_row_pos + bvh_row_angles
