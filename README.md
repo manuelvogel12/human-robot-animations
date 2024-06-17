@@ -6,7 +6,7 @@ Furthermore, it provides a processing pipeline for transforming the recorded dat
 
 ## Clone this repo
 ```
-git@github.com:JakobThumm/human-robot-animations.git
+git@github.com:manuelvogel12/human-robot-animations.git
 ```
 
 ## Installation

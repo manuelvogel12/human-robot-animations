@@ -19,7 +19,7 @@ def calc_rotation_between(dir_vec_from, dir_vec_to):
         rot (Rotation of scipy)
     """
     assert np.abs(np.linalg.norm(dir_vec_from) - 1.0) < 1e-1, "the norm is {}".format(np.linalg.norm(dir_vec_from))
-    assert np.abs(np.linalg.norm(dir_vec_from) - 1.0) < 1e-1, "the norm is {}".format(np.linalg.norm(dir_vec_to))
+    assert np.abs(np.linalg.norm(dir_vec_to) - 1.0) < 1e-1, "the norm is {}".format(np.linalg.norm(dir_vec_to))
     if np.allclose(dir_vec_from, dir_vec_to):
         return Rotation.from_rotvec(np.array([0.0, 0.0, 0.0]))
 
@@ -127,6 +127,9 @@ def estimate_rotation_between_joints(t_pose_dir_vecs, base_t_pose_rotation,
     transl_first_to_world = first_parent_pos
     rot_0_to_1, transl_0_to_1 = _inverse_transformation(rot_first_to_world, transl_first_to_world)
 
+    # hierarchy['Root'] = ["LowerBack"]
+    # hierarchy["LowerBack"] = ["L_Collar"]
+
     def rec_estimation(parent_l, rot_0_to_parent: Rotation, transl_0_to_parent):
         for child_l in hierarchy[parent_l]:
             parent_child_key = (parent_l, child_l)
@@ -160,6 +163,10 @@ def estimate_rotation_between_joints(t_pose_dir_vecs, base_t_pose_rotation,
             rec_estimation(child_l, rot_0_to_child, transl_0_to_child)
 
     rec_estimation(first_parent_l, rot_0_to_1, transl_0_to_1)
+
+    # rotations[('Root', 'L_Collar')] = rotations[('Root', 'LowerBack')] * rotations[('LowerBack', 'L_Collar')]
+    # del rotations[('Root', 'LowerBack')]
+    # del rotations[('LowerBack', 'L_Collar')]
 
     return rotations
 
