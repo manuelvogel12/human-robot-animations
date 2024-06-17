@@ -7,7 +7,7 @@ import argparse
 import numpy as np
 from motion_capture.help_scripts.angle_estimation import estimate_rotation_between_joints, \
     rotation_dict_to_angle_dict
-from motion_capture.readers.readViconCSV import get_first_frame, frames_joint_information, estimate_t_pose_info
+from motion_capture.readers.readViconCSV import get_first_frame, get_frame_at_index, frames_joint_information, estimate_t_pose_info
 from motion_capture.config_util import CONFIG_YAML
 
 
@@ -233,8 +233,10 @@ def main(input_file, t_pose_file, verbose=False):
     """
     output_file = input_file.replace('.csv', '.bvh')
     info = frames_joint_information(input_file, verbose)
-    t_pose_info = frames_joint_information(t_pose_file, verbose)
-    first_t_pose_info = get_first_frame(frames_info=t_pose_info)
+    # t_pose_info = frames_joint_information(t_pose_file, verbose)
+    first_t_pose_info = get_frame_at_index(frames_info=info, idx=800)
+
+    print(first_t_pose_info)
 
     # parameters according to the recordings
     measured_inter_joints_dists, measured_t_pose_dirs, measured_base_t_pose_angle = estimate_t_pose_info(

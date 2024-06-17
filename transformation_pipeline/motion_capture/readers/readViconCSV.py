@@ -163,6 +163,22 @@ def get_first_frame(frames_info):
     return first_frame
 
 
+def get_frame_at_index(frames_info, idx):
+    """
+    Selects and return first frame from the dictionary containing all frames
+    Args:
+        frames_info (dict): dictionary with Frame_information (parsed values of recording).
+        The key in the dictionary corresponds to the timestep of the frame.
+
+    Returns:
+        first_frame: the frame information of the first timestep
+    """
+    frames_indices = [int(s) for s in frames_info.keys()]
+    frames_indices.sort()
+    first_frame = frames_info[str(frames_indices[idx])]
+    return first_frame
+
+
 def estimate_t_pose_info(hierarchy, frame_info, root_node):
     """
     Estimate directions vectors and offsets between parent and child elements in the hierarchy.
